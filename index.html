@@ -1,212 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xp Web</title>
-    <style>
-        body {
-            margin: 0;
-            background: #1a1a1a;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000; /* Black background */
+      color: #0f0; /* Green text */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
 
-        .jumping-text {
-            color: white;
-            font-size: 20px;
-            font-family: Arial, sans-serif;
-            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
-            animation: bounce 6s infinite, glow 1.5s infinite alternate;
-            position: absolute;
-        }
+    .content {
+      position: relative;
+      text-align: center;
+      z-index: 10; /* Make sure content is above the raindrops */
+    }
 
-        @keyframes bounce {
-            0%, 100% {
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
-            25% {
-                top: 10%;
-                left: 80%;
-            }
-            50% {
-                top: 80%;
-                left: 20%;
-            }
-            75% {
-                top: 20%;
-                left: 10%;
-            }
-        }
+    h1 {
+      font-size: 3em;
+      text-shadow: 0 0 10px #0f0;
+      margin: 0;
+    }
 
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
-            }
-            to {
-                text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00;
-            }
-        }
+    p {
+      font-size: 1.2em;
+      margin-top: 1em;
+      color: #0f0;
+      opacity: 0.8;
+    }
 
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
+    /* Raindrop styles */
+    .raindrop {
+      position: absolute;
+      width: 2px;
+      height: 10px;
+      background-color: #0f0;
+      opacity: 0.5;
+      animation: fall linear infinite;
+    }
 
-        .bubble, .star, .leaf, .firefly {
-            position: absolute;
-            border-radius: 50%;
-        }
-
-        .bubble {
-            width: 20px;
-            height: 20px;
-            background: rgba(0, 150, 255, 0.5);
-            animation: floatUp linear infinite;
-        }
-
-        @keyframes floatUp {
-            from {
-                transform: translateY(100vh) scale(1);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(-100%) scale(1.5);
-                opacity: 0;
-            }
-        }
-
-        .star {
-            width: 10px;
-            height: 10px;
-            background: radial-gradient(white, transparent);
-            animation: twinkle 3s infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        .leaf {
-            width: 20px;
-            height: 20px;
-            background: rgba(50, 205, 50, 0.7);
-            animation: fall 5s linear infinite;
-        }
-
-        @keyframes fall {
-            from { transform: translateY(-50px) rotate(0); }
-            to { transform: translateY(100vh) rotate(360deg); }
-        }
-
-        .firefly {
-            width: 5px;
-            height: 5px;
-            background: yellow;
-            opacity: 0.8;
-            animation: glowFly 3s infinite;
-        }
-
-        @keyframes glowFly {
-            from { opacity: 0.4; transform: translate(0, 0); }
-            to { opacity: 1; transform: translate(50px, 50px); }
-        }
-
-        button {
-            position: fixed;
-            bottom: 10px;
-            left: 10px;
-            padding: 10px;
-            font-size: 16px;
-            color: white;
-            background-color: #333;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+    @keyframes fall {
+      from {
+        transform: translateY(-10px);
+      }
+      to {
+        transform: translateY(100vh);
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="jumping-text">Welcome! I’ll post my website projects here later</div>
-    <div class="background" id="background"></div>
-    <button id="effectButton">Change Effect</button>
-    <script>
-        const backgroundContainer = document.getElementById('background');
-        const effectButton = document.getElementById('effectButton');
-        let currentEffect = 'rain';
+  <div class="content">
+    <h1>Welcome!</h1>
+    <p>I'll be posting my website projects here later.</p>
+  </div>
 
-        function createBubble() {
-            const bubble = document.createElement('div');
-            bubble.classList.add('bubble');
-            bubble.style.left = Math.random() * 100 + 'vw';
-            bubble.style.animationDuration = Math.random() * 4 + 2 + 's';
-            backgroundContainer.appendChild(bubble);
-            setTimeout(() => bubble.remove(), 6000);
-        }
+  <script>
+    const rainContainer = document.createElement('div');
+    rainContainer.style.position = 'absolute';
+    rainContainer.style.top = 0;
+    rainContainer.style.left = 0;
+    rainContainer.style.width = '100%';
+    rainContainer.style.height = '100%';
+    rainContainer.style.overflow = 'hidden';
+    rainContainer.style.zIndex = '1'; /* Below content */
+    document.body.appendChild(rainContainer);
 
-        function createStar() {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            star.style.left = Math.random() * 100 + 'vw';
-            star.style.top = Math.random() * 100 + 'vh';
-            backgroundContainer.appendChild(star);
-            setTimeout(() => star.remove(), 3000);
-        }
+    function createRaindrop() {
+      const raindrop = document.createElement('div');
+      raindrop.classList.add('raindrop');
+      raindrop.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+      raindrop.style.animationDuration = Math.random() * 2 + 2 + 's'; // Random speed
+      raindrop.style.opacity = Math.random() * 0.5 + 0.3; // Random opacity
+      rainContainer.appendChild(raindrop);
 
-        function createLeaf() {
-            const leaf = document.createElement('div');
-            leaf.classList.add('leaf');
-            leaf.style.left = Math.random() * 100 + 'vw';
-            backgroundContainer.appendChild(leaf);
-            setTimeout(() => leaf.remove(), 5000);
-        }
+      // Remove raindrop after animation ends
+      setTimeout(() => {
+        rainContainer.removeChild(raindrop);
+      }, 4000);
+    }
 
-        function createFirefly() {
-            const firefly = document.createElement('div');
-            firefly.classList.add('firefly');
-            firefly.style.left = Math.random() * 100 + 'vw';
-            firefly.style.top = Math.random() * 100 + 'vh';
-            backgroundContainer.appendChild(firefly);
-            setTimeout(() => firefly.remove(), 3000);
-        }
-
-        function changeEffect() {
-            backgroundContainer.innerHTML = '';
-            if (currentEffect === 'rain') {
-                clearInterval(effectInterval);
-                currentEffect = 'bubble';
-                effectInterval = setInterval(createBubble, 100);
-            } else if (currentEffect === 'bubble') {
-                clearInterval(effectInterval);
-                currentEffect = 'star';
-                effectInterval = setInterval(createStar, 150);
-            } else if (currentEffect === 'star') {
-                clearInterval(effectInterval);
-                currentEffect = 'leaf';
-                effectInterval = setInterval(createLeaf, 150);
-            } else if (currentEffect === 'leaf') {
-                clearInterval(effectInterval);
-                currentEffect = 'firefly';
-                effectInterval = setInterval(createFirefly, 150);
-            } else {
-                clearInterval(effectInterval);
-                currentEffect = 'rain';
-                effectInterval = setInterval(createBubble, 100);
-            }
-        }
-
-        let effectInterval = setInterval(createBubble, 100);
-        effectButton.addEventListener('click', changeEffect);
-    </script>
+    // Generate raindrops at intervals
+    setInterval(createRaindrop, 100);
+  </script>
 </body>
 </html>
