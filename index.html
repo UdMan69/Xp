@@ -9,6 +9,27 @@
             margin: 0;
             background: #1a1a1a;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .jumping-text {
+            color: white;
+            font-size: 20px;
+            font-family: Arial, sans-serif;
+            z-index: 1;
+            animation: jump 1s infinite ease-in-out;
+        }
+
+        @keyframes jump {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
         .rain {
@@ -18,6 +39,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
+            z-index: 0;
         }
 
         .raindrop {
@@ -38,19 +60,10 @@
                 opacity: 0;
             }
         }
-
-        .corner-text {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            color: white;
-            font-size: 14px;
-            font-family: Arial, sans-serif;
-        }
     </style>
 </head>
 <body>
-    <div class="corner-text">Made With ❤️ By Xp</div>
+    <div class="jumping-text">Welcome! I’ll post my website projects here later</div>
     <div class="rain" id="rain"></div>
     <script>
         const rainContainer = document.getElementById('rain');
