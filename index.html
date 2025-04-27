@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xp Is Hot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        #canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        #swapButton {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            background-color: rgba(52, 211, 153, 0.8);
+            color: white;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            z-index: 1001;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        #swapButton:hover {
+            background-color: rgba(52, 211, 153, 0.9);
+        }
+        
+        #swapButton:active {
+            background-color: rgba(40, 183, 131, 1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transform: translateX(-50%) translateY(2px);
+        }
+        
+        .welcome-text {
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1001;
+            color: #000000;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .welcome-title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 1rem;
+        }
+        
+        .welcome-description {
+            font-size: 1.25rem;
+            color: #000000;
+        }
+        
+        #madeByText {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            color: #000000;
+            font-size: 0.75rem;
+            z-index: 1001;
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <ddwfwa class="absolute inset-0 flex items-center justify-center z-1000 pointer-events-none">
+        <canvas id="canvas"></canvas>
+    </div>
+    <div class="welcome-text">
+        <h1 class="welcome-title">Welcome!</h1>
+        <p class="welcome-description">This will be the site where I'll post my website projects so enjoy these effects❤️</p>
+    </div>
+
+    <button id="swapButton" class="font-bold bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700">Swap Effects</button>
+    <div id="madeByText">Made With ❤️ From Xp</div>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const swapButton = document.getElementById('swapButton');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let currentEffect = 'rain';
+        let particles = [];
+        let windSpeed = 0;
+        let windDirection = 1;
+        const maxWindSpeed = 3;
+        const windChangeInterval = 2000;
+        let confettiIntervalId = null;
+
+
+        function createRaindrop(x, y) {
+            let length = Math.random() * 8 + 10;
+            let speed = Math.random() * 3 + 6;
+            return {
+                x: x,
+                y: y,
+                length: length,
+                speed: speed,
+                color: `rgba(0, 149, 237, ${0.5 + Math.random() * 0.4})`,
+                windFactor: Math.random() * 0.8 + 0.2,
+            };
+        }
+
+        function createBubble(x, y) {
+            let radius = Math.random() * 10 + 5;
+            let speed = Math.random() * 1 + 0.5;
+            return {
+                x: x,
+                y: y,
+                radius: radius,
+                speed: speed,
+                color: `rgba(100, 149, 237, ${0.3 + Math.random() * 0.2})`,
+                opacity: 0,
+                opacitySpeed: 0.02 + Math.random() * 0.01,
+                floating: true,
+            };
+        }
+
+
+
+        function createParticle(x, y, effect) {
+            if (effect === 'rain') {
+                return createRaindrop(x, y);
+            } else if (effect === 'bubbles') {
+                return createBubble(x, y);
+            }
+        }
+
+        function initializeParticles(effect) {
+            particles = [];
+            const numParticles = window.innerWidth * 0.8;
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(createParticle(Math.random() * canvas.width, Math.random() * canvas.height, effect));
+            }
+        }
+
+        function drawRaindrop(drop) {
+            ctx.beginPath();
+            ctx.moveTo(drop.x, drop.y);
+            ctx.lineTo(drop.x, drop.y + drop.length);
+            ctx.strokeStyle = drop.color;
+            ctx.lineWidth = 1.5;
+            ctx.lineCap = 'round';
+            ctx.stroke();
+        }
+
+        function drawBubble(bubble) {
+            ctx.beginPath();
+            ctx.arc(bubble.x, bubble.y, bubble.radius, 0, Math.PI * 2);
+            ctx.fillStyle = bubble.color;
+            ctx.globalAlpha = bubble.opacity;
+            ctx.fill();
+            ctx.globalAlpha = 1;
+        }
+
+
+
+        function updateRaindrop(drop) {
+            drop.y += drop.speed;
+            drop.x += windSpeed * drop.windFactor;
+
+            if (drop.y > canvas.height) {
+                drop.y = 0;
+                drop.x = Math.random() * canvas.width;
+            }
+            if (drop.x > canvas.width) drop.x = 0;
+            if (drop.x < 0) drop.x = canvas.width;
+        }
+
+        function updateBubble(bubble) {
+            if (bubble.floating) {
+                bubble.y -= bubble.speed;
+                bubble.x += Math.cos(bubble.y / 50) * 0.5;
+                bubble.opacity += bubble.opacitySpeed;
+                if (bubble.opacity > 1) {
+                    bubble.opacity = 1;
+                    bubble.floating = false;
+                }
+            } else {
+                bubble.y -= bubble.speed * 0.5;
+                bubble.x += Math.cos(bubble.y / 50) * 0.2;
+            }
+
+
+            if (bubble.y < -bubble.radius) {
+                bubble.y = canvas.height + bubble.radius;
+                bubble.x = Math.random() * canvas.width;
+                bubble.opacity = 0;
+                bubble.floating = true;
+            }
+        }
+
+
+
+        function drawParticles(effect) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (effect === 'rain') {
+                particles.forEach(particle => {
+                    drawRaindrop(particle);
+                    updateRaindrop(particle);
+                });
+            } else if (effect === 'bubbles') {
+                particles.forEach(particle => {
+                    drawBubble(particle);
+                    updateBubble(particle);
+                });
+            }
+        }
+
+        function animate() {
+            drawParticles(currentEffect);
+            requestAnimationFrame(animate);
+        }
+
+        function swapEffect() {
+            if (confettiIntervalId) {
+                clearInterval(confettiIntervalId);
+                confettiIntervalId = null;
+            }
+
+
+            currentEffect = currentEffect === 'rain' ? 'bubbles' : 'rain';
+            initializeParticles(currentEffect);
+            swapButton.textContent = currentEffect === 'rain' ? 'Swap to Bubbles' : 'Swap to Rain';
+
+
+            if (currentEffect === 'rain') {
+                windSpeed = Math.random() * 0.5 + 0.1;
+                windDirection = Math.random() < 0.3 ? -1 : 1;
+                setInterval(() => {
+                    windSpeed = Math.random() * maxWindSpeed;
+                    windDirection = Math.random() < 0.3 ? -1 : 1;
+                }, windChangeInterval);
+            } else {
+                windSpeed = 0;
+                clearInterval(windChangeInterval);
+            }
+
+            if (currentEffect === 'rain') {
+                const end = Date.now() + (10 * 1000);
+                confettiIntervalId = setInterval(function() {
+                    if (Date.now() > end) {
+                        clearInterval(confettiIntervalId);
+                        confettiIntervalId = null;
+                        return;
+                    }
+
+                    confetti({
+                        particleCount: 50,
+                        startVelocity: 60,
+                        spread: 80,
+                        origin: {
+                            x: Math.random(),
+                            y: Math.random() - 0.2
+                        }
+                    });
+                }, 200);
+            } else {
+                if (confettiIntervalId) {
+                    clearInterval(confettiIntervalId);
+                    confettiIntervalId = null;
+                }
+            }
+        }
+
+        swapButton.addEventListener('click', swapEffect);
+
+        initializeParticles(currentEffect);
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initializeParticles(currentEffect);
+        });
+    </script>
+</body>
+
+</html>
