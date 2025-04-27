@@ -62,12 +62,15 @@
             pointer-events: none;
         }
 
-        .bubble {
+        .bubble, .star, .leaf, .firefly {
             position: absolute;
+            border-radius: 50%;
+        }
+
+        .bubble {
             width: 20px;
             height: 20px;
             background: rgba(0, 150, 255, 0.5);
-            border-radius: 50%;
             animation: floatUp linear infinite;
         }
 
@@ -82,21 +85,41 @@
             }
         }
 
-        .shape {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: rgba(255, 100, 100, 0.5);
-            animation: spin linear infinite;
+        .star {
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(white, transparent);
+            animation: twinkle 3s infinite;
         }
 
-        @keyframes spin {
-            from {
-                transform: rotate(0deg) translateY(-100vh);
-            }
-            to {
-                transform: rotate(360deg) translateY(100vh);
-            }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .leaf {
+            width: 20px;
+            height: 20px;
+            background: rgba(50, 205, 50, 0.7);
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            from { transform: translateY(-50px) rotate(0); }
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        .firefly {
+            width: 5px;
+            height: 5px;
+            background: yellow;
+            opacity: 0.8;
+            animation: glowFly 3s infinite;
+        }
+
+        @keyframes glowFly {
+            from { opacity: 0.4; transform: translate(0, 0); }
+            to { opacity: 1; transform: translate(50px, 50px); }
         }
 
         button {
@@ -122,15 +145,6 @@
         const effectButton = document.getElementById('effectButton');
         let currentEffect = 'rain';
 
-        function createRaindrop() {
-            const raindrop = document.createElement('div');
-            raindrop.classList.add('raindrop');
-            raindrop.style.left = Math.random() * 100 + 'vw';
-            raindrop.style.animationDuration = Math.random() * 2 + 2 + 's';
-            backgroundContainer.appendChild(raindrop);
-            setTimeout(() => raindrop.remove(), 4000);
-        }
-
         function createBubble() {
             const bubble = document.createElement('div');
             bubble.classList.add('bubble');
@@ -140,15 +154,30 @@
             setTimeout(() => bubble.remove(), 6000);
         }
 
-        function createShape() {
-            const shape = document.createElement('div');
-            shape.classList.add('shape');
-            shape.style.left = Math.random() * 100 + 'vw';
-            shape.style.animationDuration = Math.random() * 3 + 3 + 's';
-            shape.style.backgroundColor = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.5)`;
-            shape.style.borderRadius = `${Math.random() * 100}%`;
-            backgroundContainer.appendChild(shape);
-            setTimeout(() => shape.remove(), 6000);
+        function createStar() {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            backgroundContainer.appendChild(star);
+            setTimeout(() => star.remove(), 3000);
+        }
+
+        function createLeaf() {
+            const leaf = document.createElement('div');
+            leaf.classList.add('leaf');
+            leaf.style.left = Math.random() * 100 + 'vw';
+            backgroundContainer.appendChild(leaf);
+            setTimeout(() => leaf.remove(), 5000);
+        }
+
+        function createFirefly() {
+            const firefly = document.createElement('div');
+            firefly.classList.add('firefly');
+            firefly.style.left = Math.random() * 100 + 'vw';
+            firefly.style.top = Math.random() * 100 + 'vh';
+            backgroundContainer.appendChild(firefly);
+            setTimeout(() => firefly.remove(), 3000);
         }
 
         function changeEffect() {
@@ -159,16 +188,24 @@
                 effectInterval = setInterval(createBubble, 100);
             } else if (currentEffect === 'bubble') {
                 clearInterval(effectInterval);
-                currentEffect = 'shape';
-                effectInterval = setInterval(createShape, 100);
+                currentEffect = 'star';
+                effectInterval = setInterval(createStar, 150);
+            } else if (currentEffect === 'star') {
+                clearInterval(effectInterval);
+                currentEffect = 'leaf';
+                effectInterval = setInterval(createLeaf, 150);
+            } else if (currentEffect === 'leaf') {
+                clearInterval(effectInterval);
+                currentEffect = 'firefly';
+                effectInterval = setInterval(createFirefly, 150);
             } else {
                 clearInterval(effectInterval);
                 currentEffect = 'rain';
-                effectInterval = setInterval(createRaindrop, 100);
+                effectInterval = setInterval(createBubble, 100);
             }
         }
 
-        let effectInterval = setInterval(createRaindrop, 100);
+        let effectInterval = setInterval(createBubble, 100);
         effectButton.addEventListener('click', changeEffect);
     </script>
 </body>
