@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,18 +15,19 @@
             justify-content: center;
             align-items: center;
         }
-
+        
         .jumping-text {
             color: white;
             font-size: 20px;
             font-family: Arial, sans-serif;
             text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
-            animation: bounce 3s infinite, glow 1.5s infinite alternate;
+            animation: bounce 6s infinite, glow 1.5s infinite alternate;
             position: absolute;
         }
-
+        
         @keyframes bounce {
-            0%, 100% {
+            0%,
+            100% {
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
@@ -43,7 +45,7 @@
                 left: 10%;
             }
         }
-
+        
         @keyframes glow {
             from {
                 text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
@@ -52,7 +54,7 @@
                 text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00;
             }
         }
-
+        
         .rain {
             position: fixed;
             top: 0;
@@ -61,7 +63,7 @@
             height: 100%;
             pointer-events: none;
         }
-
+        
         .raindrop {
             position: absolute;
             width: 2px;
@@ -69,7 +71,7 @@
             background: rgba(255, 255, 255, 0.5);
             animation: fall linear infinite;
         }
-
+        
         @keyframes fall {
             from {
                 transform: translateY(-100%);
@@ -82,11 +84,13 @@
         }
     </style>
 </head>
+
 <body>
     <div class="jumping-text">Welcome! I’ll post my website projects here later</div>
     <div class="rain" id="rain"></div>
     <script>
         const rainContainer = document.getElementById('rain');
+
         function createRaindrop() {
             const raindrop = document.createElement('div');
             raindrop.classList.add('raindrop');
@@ -95,7 +99,8 @@
             rainContainer.appendChild(raindrop);
             setTimeout(() => raindrop.remove(), 4000);
         }
-        setInterval(createRaindrop, 100);
+        setInterval(createRaindrop, 20);
     </script>
 </body>
+
 </html>
