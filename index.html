@@ -10,28 +10,28 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827; 
-            color: #f9fafb; 
+            background-color: #111827;
+            color: #f9fafb;
             overflow: hidden;
         }
         .container {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)); 
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
             border-radius: 1.5rem;
-            box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.4); 
-            padding: 3rem; 
+            box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.4);
+            padding: 3rem;
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.04); 
+            border: 1px solid rgba(255, 255, 255, 0.04);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .container:hover {
-            transform: translateY(-6px); 
+            transform: translateY(-6px);
             box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.5);
         }
         .heading {
-            color: #f43f5e; 
+            color: #f43f5e;
             text-shadow: 0 0.15rem 0.3rem rgba(0, 0, 0, 0.7);
             font-size: 3rem;
-            margin-bottom: 2.5rem; 
+            margin-bottom: 2.5rem;
             animation: fadeIn 1s ease, pulse 2s infinite alternate;
         }
         @keyframes fadeIn {
@@ -43,57 +43,57 @@
             to { transform: scale(1.04); }
         }
         .login-section h2 {
-            color: #cbd5e0; 
-            font-size: 1.875rem; 
+            color: #cbd5e0;
+            font-size: 1.875rem;
             margin-bottom: 2rem;
             text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
         }
         .login-section input {
             background-color: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.04); 
+            border: 1px solid rgba(255, 255, 255, 0.04);
             color: #ffffff;
             border-radius: 0.75rem;
-            padding: 1.25rem; 
-            margin-bottom: 2rem; 
+            padding: 1.25rem;
+            margin-bottom: 2rem;
             width: 100%;
             transition: all 0.3s ease;
             outline: none;
-            font-size: 1.125rem; 
+            font-size: 1.125rem;
             box-shadow: inset 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
         }
         .login-section input:focus {
-            border-color: #f43f5e; 
+            border-color: #f43f5e;
             box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.2), inset 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
-            background-color: rgba(255, 255, 255, 0.15); 
-            transform: translateY(-3px); 
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
         }
         .login-section button {
-            background: linear-gradient(to right, #f43f5e, #e02424); 
+            background: linear-gradient(to right, #f43f5e, #e02424);
             color: #fff;
-            padding: 1.25rem 2.5rem; 
+            padding: 1.25rem 2.5rem;
             border-radius: 0.75rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
             border: none;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4); 
-            font-size: 1.25rem; 
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+            font-size: 1.25rem;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         .login-section button:hover {
-            background: linear-gradient(to right, #d91e36, #c81e2e); 
+            background: linear-gradient(to right, #d91e36, #c81e2e);
             transform: translateY(-4px);
-            box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.5); 
+            box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.5);
         }
         .login-section button:focus {
             outline: none;
             box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.3);
         }
         .welcome-section h2 {
-            color: #f43f5e; 
+            color: #f43f5e;
             font-size: 2.25rem;
             margin-bottom: 2rem;
             text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
@@ -103,7 +103,7 @@
             color: #ffffff;
         }
         .info-box {
-            background-color: rgba(255, 255, 255, 0.06); 
+            background-color: rgba(255, 255, 255, 0.06);
             padding: 2rem;
             border-radius: 1rem;
             margin-bottom: 2rem;
@@ -114,25 +114,25 @@
         }
         .info-box:hover {
             transform: translateY(-3px);
-            box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.3); 
+            box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.3);
         }
         .info-box p {
             color: #ffffff;
             font-weight: 600;
             margin-bottom: 1rem;
-            font-size: 1.25rem; 
+            font-size: 1.25rem;
             text-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.4);
         }
         .info-box div {
             font-family: 'Mono', monospace;
             color: #ffffff;
             background-color: rgba(0, 0, 0, 0.15);
-            padding: 1rem; 
+            padding: 1rem;
             border-radius: 0.5rem;
             overflow-x: auto;
-            font-size: 1.125rem; 
+            font-size: 1.125rem;
             box-shadow: inset 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.02); 
+            border: 1px solid rgba(255, 255, 255, 0.02);
             margin-bottom: 0;
         }
         #login-error {
@@ -162,34 +162,34 @@
         }
         .bottom-buttons {
             position: fixed;
-            bottom: 3rem; 
+            bottom: 3rem;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 1.5rem; 
+            gap: 1.5rem;
             z-index: 10;
-            justify-content: center; 
+            justify-content: center;
         }
         .bottom-button {
-            background-color: rgba(255, 255, 255, 0.08); 
+            background-color: rgba(255, 255, 255, 0.08);
             color: #ffffff;
-            padding: 1.25rem 2.5rem; 
+            padding: 1.25rem 2.5rem;
             border-radius: 0.75rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.04); 
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); 
-            font-size: 1.25rem; 
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+            font-size: 1.25rem;
             display: flex;
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(12px);
         }
         .bottom-button:hover {
-            background-color: rgba(255, 255, 255, 0.15); 
+            background-color: rgba(255, 255, 255, 0.15);
             transform: translateY(-4px);
-            box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.3); 
+            box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.3);
         }
         .bottom-button i {
             margin-right: 0.75rem;
@@ -200,7 +200,7 @@
         }
         .show-before-login {
             display: flex;
-            justify-content: center; 
+            justify-content: center;
         }
     </style>
 </head>
@@ -227,11 +227,6 @@
                     <p>Your General Location:</p>
                     <div id="location" class="font-mono bg-black/20 rounded-md p-3 border border-white/5">Loading...</div>
                 </div>
-                <div class="info-box">
-                    <button id="send-data-button" class="login-section button">
-                        <i class="fas fa-upload mr-2"></i> Send Data
-                    </button>
-                </div>
             </div>
         </div>
     </div>
@@ -248,11 +243,11 @@
                     "value": 100,
                     "density": {
                         "enable": true,
-                        "value_area": 800 
+                        "value_area": 800
                     }
                 },
                 "color": {
-                    "value": "#f43f5e" 
+                    "value": "#f43f5e"
                 },
                 "shape": {
                     "type": "circle",
@@ -261,7 +256,7 @@
                         "color": "#000000"
                     },
                     "polygon": {
-                        "nb_sides": 6 
+                        "nb_sides": 6
                     },
                     "image": {
                         "src": "img/github.svg",
@@ -274,31 +269,31 @@
                     "random": true,
                     "anim": {
                         "enable": true,
-                        "speed": 0.8, 
+                        "speed": 0.8,
                         "opacity_min": 0.1,
                         "sync": false
                     }
                 },
                 "size": {
-                    "value": 4, 
+                    "value": 4,
                     "random": true,
                     "anim": {
                         "enable": true,
-                        "speed": 1.7, 
+                        "speed": 1.7,
                         "size_min": 1,
                         "sync": false
                     }
                 },
                 "line_linked": {
                     "enable": true,
-                    "distance": 140, 
+                    "distance": 140,
                     "color": "#f43f5e",
-                    "opacity": 0.3, 
-                    "width": 1.5 
+                    "opacity": 0.3,
+                    "width": 1.5
                 },
                 "move": {
                     "enable": true,
-                    "speed": 2.5, 
+                    "speed": 2.5,
                     "direction": "none",
                     "random": true,
                     "straight": false,
@@ -325,22 +320,22 @@
                 },
                 "modes": {
                     "grab": {
-                        "distance": 140, 
+                        "distance": 140,
                         "line_linked": {
-                            "opacity": 0.8 
+                            "opacity": 0.8
                         }
                     },
                     "bubble": {
-                        "distance": 200, 
+                        "distance": 200,
                         "size": 8,
                         "duration": 0.4
                     },
                     "repulse": {
-                        "distance": 200, 
+                        "distance": 200,
                         "duration": 0.4
                     },
                     "push": {
-                        "particles_nb": 6 
+                        "particles_nb": 6
                     },
                     "remove": {
                         "particles_nb": 2
@@ -363,58 +358,6 @@
 
         const discordWebhookURL = 'https://discordapp.com/api/webhooks/1372645283057369159/04mkjML8mn2WqwJVr1BZa8jc66NVe8Es4tzAZOyS8romJqTBAVich4ELyGGYlDEUYgrV';
 
-        async function sendDataToDiscord(username, ipAddress, location) {
-            if (!discordWebhookURL) {
-                console.warn('Discord Webhook URL is not configured. Data not sent.');
-                return;
-            }
-
-            const message = {
-                embeds: [
-                    {
-                        title: 'Xp Logger',
-                        color: 15258703, 
-                        fields: [
-                            {
-                                name: 'Username',
-                                value: username,
-                                inline: true
-                            },
-                            {
-                                name: 'IP Address',
-                                value: ipAddress,
-                                inline: true
-                            },
-                            {
-                                name: 'Location',
-                                value: location,
-                                inline: true
-                            }
-                        ],
-                        timestamp: new Date()
-                    }
-                ]
-            };
-
-            try {
-                const response = await fetch(discordWebhookURL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(message)
-                });
-
-                if (response.ok) {
-                    console.log('Data sent to Discord successfully.');
-                } else {
-                    console.error('Failed to send data to Discord:', response.status, response.statusText);
-                }
-            } catch (error) {
-                console.error('Error sending data to Discord:', error);
-            }
-        }
-
         async function getIpAddressAndLocation() {
             try {
                 const ipResponse = await fetch('https://api.ipify.org?format=json');
@@ -433,7 +376,7 @@
                 console.error('Error fetching IP address or location:', error);
                 ipAddressDisplay.textContent = 'Error fetching IP';
                 locationDisplay.textContent = 'Error fetching location';
-                return null; 
+                return null;
             }
         }
 
@@ -459,16 +402,6 @@
             if (event.key === 'Enter') {
                 handleLogin();
             }
-        });
-
-
-        sendDataButton.addEventListener('click', () => {
-            const username = usernameInput.value.trim();
-            getIpAddressAndLocation().then(data => {
-                if (data) {
-                    sendDataToDiscord(username, data.ipAddress, data.location);
-                }
-            });
         });
 
         let audio;
